@@ -10,15 +10,22 @@ import math
 def Initiate(user):
     #Look in the database for a match to "User" so I can respond.
     #Do I know how to respond?
-    exists = os.path.isfile("PH/" + user + ".ph");
+    USER = user.replace("?", "")
+    USER = USER.replace('"', "")
+    USER = USER.replace('PH/', "")
+    USER = USER.replace('\n', "")
+    USER = USER.replace('<', "")
+    USER = USER.replace('>', "")
+    USER = USER.replace('/', "")
+    exists = os.path.isfile("PH/" + USER + ".ph");
     #If I do
     if exists is True:
         #Load the entry
-        Respo = open("PH/" + user + ".ph", "r");
+        Respo = open("PH/" + USER + ".ph", "r");
         respo = file.read(Respo);
         Respo.close();
         #reply
-        Input = raw_input(respo);
+        Input = raw_input("BRIAN: " + respo + "\nYOU: ");
         
     #If I don't
     if exists is False:
@@ -28,13 +35,28 @@ def Initiate(user):
         Respo = open("DB/" + One, "r");
         respo = file.read(Respo);
         Respo.close();
-        Input = raw_input(respo);
-    DBup = open("DB/" + Input + ".ph", "w");
+        Input = raw_input("BRIAN: " + respo + "\nYOU: ");
+    INPUT = Input.replace("?", "")
+    INPUT = INPUT.replace('"', "")
+    INPUT = INPUT.replace('PH/', "")
+    INPUT = INPUT.replace('\n', "")
+    INPUT = INPUT.replace('<', "")
+    INPUT = INPUT.replace('>', "")
+    INPUT = INPUT.replace('/', "")
+    
+    RESPO = respo.replace("?", "")
+    RESPO = RESPO.replace('"', "")
+    RESPO = RESPO.replace('PH/', "")
+    RESPO = RESPO.replace('\n', "")
+    RESPO = RESPO.replace('<', "")
+    RESPO = RESPO.replace('>', "")
+    RESPO = RESPO.replace('/', "")
+    DBup = open("DB/" + INPUT + ".ph", "w");
     DBup.write(Input);
     file.close(DBup);
-    PHup = open("PH/" + respo + ".ph", "w");
+    PHup = open("PH/" + RESPO + ".ph", "w");
     PHup.write(Input);
     file.close(PHup);
     Initiate(Input)
-#Begin our engine, saying "I am Brian, a Bot..." etc.
-Initiate("Who are you?");
+start = raw_input("YOU: ")
+Initiate(start);

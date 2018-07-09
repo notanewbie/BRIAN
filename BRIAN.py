@@ -12,7 +12,7 @@ def autoupdate():
     import sys
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
-    if ver in l:
+    if l in ver:
         print botname + " is up to date."
         print "Version: " + ver;
     else:

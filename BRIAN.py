@@ -5,7 +5,7 @@ import time
 import sys
 from findtext import scour
 botname = "BRIAN"
-ver = "18.7.8"
+ver = "18.7.9.3"
 update = "yes"
 def autoupdate():
     import urllib2
@@ -16,9 +16,9 @@ def autoupdate():
         print botname + " is up to date."
         print "Version: " + ver;
     else:
-        print "Updating..."
+        print "Updating to " + l + "..."
         f = open(sys.argv[0], "w")
-        f.write(urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/18.7.8/BRIAN.py").read())
+        f.write(urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/" + l + "/BRIAN.py").read())
         file.close(f)
         t = sys.argv[0]
         print "Update installed."

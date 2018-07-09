@@ -5,7 +5,30 @@ import time
 import sys
 from findtext import scour
 botname = "BRIAN"
-ver = "18.7.8"
+ver = "18.7.9"
+update = "yes"
+def autoupdate():
+    import urllib2
+    import sys
+    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest").read()
+    l = l.replace("\\n", "")
+    ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
+    if ver in l:
+        print botname + " is up to date."
+        print "Version: " + ver;
+    else:
+        print "Updating..."
+        f = open(sys.argv[0], "w")
+        f.write(urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/18.7.8/BRIAN.py").read())
+        file.close(f)
+        t = sys.argv[0]
+        print "Update installed."
+        print "Restarting..."
+        execfile(t)
+if "no" in update:
+    ver = ver
+else:
+    autoupdate()
 #This is BRIAN, a Bot Really Intelligent And Nice.
 #
 #

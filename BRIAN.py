@@ -5,7 +5,7 @@ import time
 import sys
 from findtext import scour
 botname = "BRIAN"
-ver = "18.7.9.3"
+ver = "18.7.9.4"
 update = "yes"
 def autoupdate():
     import urllib2
@@ -13,6 +13,8 @@ def autoupdate():
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
     if l in ver:
+        print l
+        print ver
         print botname + " is up to date."
         print "Version: " + ver;
     else:

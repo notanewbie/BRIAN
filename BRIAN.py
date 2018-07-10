@@ -13,8 +13,8 @@ def autoupdate():
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
     if l in ver:
-        print l
-        print ver
+        #print l
+        #print ver
         print botname + " is up to date."
         print "Version: " + ver;
     else:

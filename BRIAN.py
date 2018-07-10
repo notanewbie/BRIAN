@@ -5,7 +5,7 @@ import time
 import sys
 from findtext import scour
 botname = "BRIAN"
-ver = "18.7.9.4"
+ver = "18.7.9.6"
 update = "yes"
 def autoupdate():
     import urllib2
@@ -24,8 +24,9 @@ def autoupdate():
         file.close(f)
         t = sys.argv[0]
         print "Update installed."
-        print "Restarting..."
-        execfile(t)
+        raw_input("Please restart inact changes. Press enter to continue.")
+        sys.exit(0)
+        #execfile(t)
 if "no" in update:
     ver = ver
 else:

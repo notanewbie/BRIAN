@@ -10,7 +10,7 @@ update = "yes"
 def autoupdate():
     import urllib2
     import sys
-    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest").read().replace("\n", "")
+    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
     if l in ver:
         print l

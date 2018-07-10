@@ -5,7 +5,7 @@ import time
 import sys
 from findtext import scour
 botname = "BRIAN"
-ver = "18.7.9.6"
+ver = "18.7.9.5"
 update = "yes"
 def autoupdate():
     import urllib2

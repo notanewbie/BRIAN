@@ -4,13 +4,31 @@ import math
 import time
 import sys
 from findtext import scour
-botname = "BRIAN"
-ver = "18.7.9.5"
-update = "yes"
+#botname = "BRIAN"
+ver = "18.7.11"
+#update = "yes"
+try:
+    tempfile = open("settings.pts", "r");
+    settings = file.read(tempfile);
+    tempfile.close();
+except IOError:
+    tempfile = open("settings.pts", "w");
+    tempfile.write("botname = BRIAN\nupdate = yes")
+    tempfile.close();
+    tempfile = open("settings.pts", "r");
+    settings = file.read(tempfile);
+    tempfile.close();
+c = 0
+while c < len(settings.split("\n")):
+    if settings.split("\n")[c].split(" = ")[0] in "botname":
+        botname = settings.split("\n")[0].split(" = ")[1]
+    if settings.split("\n")[c].split(" = ")[0] in "autoupdate":
+        update = settings.split("\n")[0].split(" = ")[1]
+    c = c + 1
 def autoupdate():
     import urllib2
     import sys
-    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache").read().replace("\n", "")
+    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
     if l in ver:
         #print l
@@ -24,9 +42,10 @@ def autoupdate():
         file.close(f)
         t = sys.argv[0]
         print "Update installed."
-        raw_input("Please restart inact changes. Press enter to continue.")
-        sys.exit(0)
-        #execfile(t)
+        print "Restarting..."
+        #raw_input("Please restart inact changes. Press enter to continue.")
+        #sys.exit(0)
+        execfile(t)
 if "no" in update:
     ver = ver
 else:

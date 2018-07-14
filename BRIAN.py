@@ -7,7 +7,6 @@ from findtext import scour
 import urllib2
 import sys
 #botname = "BRIAN"
-ver = "18.7.13.1"
 #update = "yes"
 try:
     tempfile = open("settings.pts", "r");
@@ -28,8 +27,9 @@ while c < len(settings.split("\n")):
         update = settings.split("\n")[0].split(" = ")[1]
     c = c + 1
 def autoupdate():
+    ver = "18.7.13.2"
     import urllib2
-    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache").read().replace("\n", "")
+    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=1").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
     if l in ver:
         #print l
@@ -48,7 +48,7 @@ def autoupdate():
         #sys.exit(0)
         execfile(t)
 if "no" in update:
-    ver = ver
+    c = c
 else:
     try:
         import urllib2

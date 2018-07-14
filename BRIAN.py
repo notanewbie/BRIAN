@@ -27,7 +27,7 @@ while c < len(settings.split("\n")):
         update = settings.split("\n")[0].split(" = ")[1]
     c = c + 1
 def autoupdate():
-    ver = "18.7.13.2"
+    ver = "18.7.13.3"
     import urllib2
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=1").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
@@ -43,10 +43,10 @@ def autoupdate():
         file.close(f)
         t = sys.argv[0]
         print "Update installed."
-        print "Restarting..."
-        #raw_input("Please restart inact changes. Press enter to continue.")
-        #sys.exit(0)
-        execfile(t)
+        #print "Restarting..."
+        raw_input("Please restart inact changes. Press enter to continue.")
+        sys.exit(0)
+        #execfile(t)
 if "no" in update:
     c = c
 else:

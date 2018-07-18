@@ -58,7 +58,7 @@ tempfile = open("settings.pts", "w");
 tempfile.write(st)
 tempfile.close();
 def autoupdate():
-    ver = "18.7.18"
+    ver = "18.7.18.1"
     import urllib2
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=1").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
@@ -185,7 +185,7 @@ def Initiate(user):
 start = raw_input("YOU: ")
 #Speak() from pySpeak
 def Speak(words):
-    print "Speaking"
+    #print "Speaking"
     if "win32" in sys.platform or "win64" in sys.platform:
         os.system('mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' + parseChars(words) + '"")(window.close)")')
     if "darwin" in sys.platform:

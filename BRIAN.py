@@ -21,13 +21,44 @@ except IOError:
     tempfile.close();
 c = 0
 while c < len(settings.split("\n")):
-    if settings.split("\n")[c].split(" = ")[0] in "botname":
-        botname = settings.split("\n")[0].split(" = ")[1]
-    if settings.split("\n")[c].split(" = ")[0] in "autoupdate":
-        update = settings.split("\n")[0].split(" = ")[1]
+    try:
+        if settings.split("\n")[c].split(" = ")[0] in "botname":
+            botname = settings.split("\n")[c].split(" = ")[1]
+        if settings.split("\n")[c].split(" = ")[0] in "autoupdate":
+            update = settings.split("\n")[c].split(" = ")[1]
+        if settings.split("\n")[c].split(" = ")[0] in "tts":
+            tts = settings.split("\n")[c].split(" = ")[1]
+    except IndexError:
+        c = c + 1
     c = c + 1
+st = ""
+try:
+    botname
+    st = st + "botname = " + botname + "\n"
+except NameError:
+    botname = "BRIAN"
+    st = st + "botname = BRIAN\n"
+try:
+    update
+    st = st + "update = " + update + "\n"
+except NameError:
+    update = "yes"
+    st = st + "update = yes\n"
+try:
+    tts
+    st = st + "tts = " + tts + "\n"
+except NameError:
+    tts = "on"
+    st = st + "tts = on\n"
+#print st
+#print botname
+#print update
+#print tts
+tempfile = open("settings.pts", "w");
+tempfile.write(st)
+tempfile.close();
 def autoupdate():
-    ver = "18.7.13.3"
+    ver = "18.7.18"
     import urllib2
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=1").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
@@ -122,7 +153,10 @@ def Initiate(user):
         respo = file.read(Respo);
         Respo.close();
         #reply
-        Speak(respo)
+        if "off" in tts:
+            exists = exists
+        else:
+            Speak(respo)
         Input = raw_input(botname + ": " + respo + "\nYOU: ");
         
     #If I don't
@@ -132,6 +166,10 @@ def Initiate(user):
         T = open("PH/" + scour(user, PHDB)[0], "r");
         respo = file.read(T);
         T.close();
+        if "off" in tts:
+            exists = exists
+        else:
+            Speak(respo)
         Input = raw_input(botname + ": " + respo + "\nYOU: ");
     INPUT = parseChars(Input)
     
@@ -147,6 +185,7 @@ def Initiate(user):
 start = raw_input("YOU: ")
 #Speak() from pySpeak
 def Speak(words):
+    print "Speaking"
     if "win32" in sys.platform or "win64" in sys.platform:
         os.system('mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' + parseChars(words) + '"")(window.close)")')
     if "darwin" in sys.platform:

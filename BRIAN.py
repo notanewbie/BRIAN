@@ -55,7 +55,7 @@ except NameError:
     st = st + "tts = on\n"
 try:
     static
-    st = st + "static = " + static + "\n"
+    st = st + "static = no\n"
 except NameError:
     update = "yes"
     st = st + "update = yes\n"

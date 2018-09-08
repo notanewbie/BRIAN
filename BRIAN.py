@@ -213,7 +213,7 @@ def Speak(words):
 #Speak("I'm eighteen years old but I'm not done yet. I'm not Molly and I'm not Percocet.")
 
 Initiate(start);
-
+'''
  ____________________
 |  ________________  |
 | |________________| |
@@ -226,3 +226,5 @@ Initiate(start);
 |____________________|
 
 notanewbie made this.
+
+'''

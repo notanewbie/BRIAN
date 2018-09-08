@@ -6,7 +6,7 @@ import sys
 from findtext import scour
 import urllib2
 import sys
-ver = "18.9.7.2"
+ver = "18.9.8"
 #botname = "BRIAN"
 #update = "yes"
 try:
@@ -68,7 +68,7 @@ tempfile.write(st)
 tempfile.close();
 def autoupdate():
     import urllib2
-    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=1").read().replace("\n", "")
+    l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=" + str(random.randint(0,1000000000000))).read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
     if l in ver:
         #print l

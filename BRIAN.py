@@ -6,7 +6,7 @@ import sys
 from findtext import scour
 import urllib2
 import sys
-ver = "18.9.7"
+ver = "18.9.7.2"
 #botname = "BRIAN"
 #update = "yes"
 try:

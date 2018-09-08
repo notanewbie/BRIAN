@@ -6,6 +6,7 @@ import sys
 from findtext import scour
 import urllib2
 import sys
+ver = "18.9.7"
 #botname = "BRIAN"
 #update = "yes"
 try:
@@ -28,6 +29,8 @@ while c < len(settings.split("\n")):
             update = settings.split("\n")[c].split(" = ")[1]
         if settings.split("\n")[c].split(" = ")[0] in "tts":
             tts = settings.split("\n")[c].split(" = ")[1]
+        if settings.split("\n")[c].split(" = ")[0] in "static":
+            static = settings.split("\n")[c].split(" = ")[1]
     except IndexError:
         c = c + 1
     c = c + 1
@@ -50,6 +53,12 @@ try:
 except NameError:
     tts = "on"
     st = st + "tts = on\n"
+try:
+    static
+    st = st + "static = " + static + "\n"
+except NameError:
+    update = "yes"
+    st = st + "update = yes\n"
 #print st
 #print botname
 #print update
@@ -58,7 +67,6 @@ tempfile = open("settings.pts", "w");
 tempfile.write(st)
 tempfile.close();
 def autoupdate():
-    ver = "18.7.18.1"
     import urllib2
     l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=1").read().replace("\n", "")
     ldl = "https://github.com/notanewbie/BRIAN/archive/" + l + ".zip"
@@ -83,7 +91,7 @@ if "no" in update:
 else:
     try:
         import urllib2
-        l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache").read().replace("\n", "")
+        l = urllib2.urlopen("https://raw.githubusercontent.com/notanewbie/BRIAN/master/latest?nocache=" + str(random.randint(0,1000000000000))).read().replace("\n", "")
         autoupdate()
     except urllib2.URLError:
         print "Unable to reach CDN server to check for updates. Please connect to the internet. If the problem persists, please email notanewbie at admin@notanewbie.com."
@@ -175,12 +183,22 @@ def Initiate(user):
     
     RESPO = parseChars(respo)
 
-    DBup = open("DB/" + INPUT + ".ph", "w");
-    DBup.write(Input);
-    file.close(DBup);
-    PHup = open("PH/" + RESPO + ".ph", "w");
-    PHup.write(Input);
-    file.close(PHup);
+    try:
+        static;
+    except NameError:
+        DBup = open("DB/" + INPUT + ".ph", "w");
+        DBup.write(Input);
+        file.close(DBup);
+        PHup = open("PH/" + RESPO + ".ph", "w");
+        PHup.write(Input);
+        file.close(PHup);
+    if "no" in static:
+        DBup = open("DB/" + INPUT + ".ph", "w");
+        DBup.write(Input);
+        file.close(DBup);
+        PHup = open("PH/" + RESPO + ".ph", "w");
+        PHup.write(Input);
+        file.close(PHup);
     Initiate(Input)
 start = raw_input("YOU: ")
 #Speak() from pySpeak
@@ -195,3 +213,16 @@ def Speak(words):
 #Speak("I'm eighteen years old but I'm not done yet. I'm not Molly and I'm not Percocet.")
 
 Initiate(start);
+
+ ____________________
+|  ________________  |
+| |________________| |
+|                    |
+|  ________________  |
+| |                | |
+| |   __________   | |
+| |  |          |  | |
+| |__|          |__| |
+|____________________|
+
+notanewbie made this.

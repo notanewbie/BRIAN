@@ -6,7 +6,7 @@ import sys
 from findtext import scour
 import urllib2
 import sys
-ver = "18.9.8"
+ver = "18.9.13"
 #botname = "BRIAN"
 #update = "yes"
 try:
@@ -184,15 +184,14 @@ def Initiate(user):
     RESPO = parseChars(respo)
 
     try:
-        static;
+        if "no" in static:
+            DBup = open("DB/" + INPUT + ".ph", "w");
+            DBup.write(Input);
+            file.close(DBup);
+            PHup = open("PH/" + RESPO + ".ph", "w");
+            PHup.write(Input);
+            file.close(PHup);
     except NameError:
-        DBup = open("DB/" + INPUT + ".ph", "w");
-        DBup.write(Input);
-        file.close(DBup);
-        PHup = open("PH/" + RESPO + ".ph", "w");
-        PHup.write(Input);
-        file.close(PHup);
-    if "no" in static:
         DBup = open("DB/" + INPUT + ".ph", "w");
         DBup.write(Input);
         file.close(DBup);

@@ -7,7 +7,7 @@ import sys
 from findtext import scour
 import urllib2
 import sys
-ver = "18.12.11"
+ver = "18.12.11.1"
 #botname = "BRIAN"
 #update = "yes"
 try:
@@ -103,7 +103,10 @@ else:
 #This code is still undergoing Beta testing.
 
 #Function to parse harmful characters.
-
+def harshChars(t):
+    t = t.replace("'", "")
+    t = t.replace('"', "")
+    return t
 def parseChars(t):
     t = t.replace("?", "")
     t = t.replace('"', "")
@@ -206,7 +209,7 @@ def Speak(words):
     #print "Speaking"
     if "win32" in sys.platform or "win64" in sys.platform:
         os.system('mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' + parseChars(words) + '"")(window.close)")')
-        os.system('PowerShell -Command "Add-Type –AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(' + "'" + parseChars(words) + "'" + ');"');
+        os.system('PowerShell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(' + "'" + harshChars(parseChars(words)) + "'" + ');"');
     if "darwin" in sys.platform:
         os.system("say " + words)
 #DEMO CODE:

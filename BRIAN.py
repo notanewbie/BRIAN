@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import os
 import random
 import math
@@ -6,7 +7,7 @@ import sys
 from findtext import scour
 import urllib2
 import sys
-ver = "18.9.13"
+ver = "18.12.11"
 #botname = "BRIAN"
 #update = "yes"
 try:
@@ -205,6 +206,7 @@ def Speak(words):
     #print "Speaking"
     if "win32" in sys.platform or "win64" in sys.platform:
         os.system('mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' + parseChars(words) + '"")(window.close)")')
+        os.system('PowerShell -Command "Add-Type –AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(' + "'" + parseChars(words) + "'" + ');"');
     if "darwin" in sys.platform:
         os.system("say " + words)
 #DEMO CODE:

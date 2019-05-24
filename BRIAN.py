@@ -7,7 +7,8 @@ import sys
 from findtext import scour
 import urllib2
 import sys
-ver = "18.12.11.1"
+import platform
+ver = "19"
 #botname = "BRIAN"
 #update = "yes"
 try:
@@ -59,7 +60,7 @@ try:
     st = st + "static = no\n"
 except NameError:
     update = "yes"
-    st = st + "update = yes\n"
+    st = st + "static = yes\n"
 #print st
 #print botname
 #print update
@@ -207,8 +208,11 @@ start = raw_input("YOU: ")
 #Speak() from pySpeak
 def Speak(words):
     #print "Speaking"
-    if "win32" in sys.platform or "win64" in sys.platform:
+    if "win32" in sys.platform and '10' not in platform.release():
         os.system('mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' + parseChars(words) + '"")(window.close)")')
+    elif "win64" in sys.platform and '10' in platform.release():
+        os.system('PowerShell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(' + "'" + harshChars(parseChars(words)) + "'" + ');"');
+    elif "win32" in sys.platform and '10' in platform.release():
         os.system('PowerShell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(' + "'" + harshChars(parseChars(words)) + "'" + ');"');
     if "darwin" in sys.platform:
         os.system("say " + words)

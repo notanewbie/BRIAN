@@ -190,17 +190,17 @@ def Initiate(user):
 
     try:
         if "no" in static:
-            DBup = open("DB/" + INPUT + ".ph", "w");
+            DBup = open("DB/" + INPUT[:200] + ".ph", "w");
             DBup.write(Input);
             file.close(DBup);
-            PHup = open("PH/" + RESPO + ".ph", "w");
+            PHup = open("PH/" + RESPO[:200] + ".ph", "w");
             PHup.write(Input);
             file.close(PHup);
     except NameError:
-        DBup = open("DB/" + INPUT + ".ph", "w");
+        DBup = open("DB/" + INPUT[:200] + ".ph", "w");
         DBup.write(Input);
         file.close(DBup);
-        PHup = open("PH/" + RESPO + ".ph", "w");
+        PHup = open("PH/" + RESPO[:200] + ".ph", "w");
         PHup.write(Input);
         file.close(PHup);
     Initiate(Input)

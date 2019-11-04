@@ -8,7 +8,7 @@ from findtext import scour
 import urllib2
 import sys
 import platform
-ver = "19.8"
+ver = "19.11"
 #botname = "BRIAN"
 #update = "yes"
 try:
